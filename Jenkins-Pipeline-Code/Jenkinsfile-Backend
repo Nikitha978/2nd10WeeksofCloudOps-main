@@ -22,17 +22,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/CloudTechDevOps/2nd10WeeksofCloudOps-main.git'
             }
         }
-        stage('Sonarqube Analysis') {
-            steps {
-                dir('backend') {
-                    withSonarQubeEnv('sonar-server') {
-                        sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                        -Dsonar.projectName=three-tier-backend \
-                        -Dsonar.projectKey=three-tier-backend '''
-                    }
-                }
-            }
-        }
         stage('Quality Check') {
             steps {
                 script {
